@@ -1,0 +1,152 @@
+﻿:root {
+    --bg-main: #121212;
+    --bg-surface: #1e1e1e;
+    --bg-hover: #2d2d2d;
+    --primary: #458588;
+    --primary-hover: #83a598;
+    --text-main: #ebdbb2;
+    --text-muted: #a89984;
+    --border: #3c3836;
+    --code-bg: #000000;
+    --code-text: #b8bb26;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--bg-surface);
+    border-bottom: 2px solid var(--border);
+    padding: 0;
+}
+
+.header-content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-hover);
+    border: 1px solid var(--border);
+    background: var(--bg-main);
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    color: #fff;
+    font-weight: normal;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 32px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 5px;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    padding: 15px;
+    overflow: auto;
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+code {
+    font-family: Consolas, "Courier New", monospace;
+    background: var(--bg-surface);
+    padding: 2px 5px;
+    font-size: 14px;
+    color: var(--code-text);
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    background-color: var(--bg-surface);
+    color: #fff;
+    font-weight: normal;
+}
+
+.example-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.example-card h2 {
+    margin-top: 0;
+    border-bottom: none;
+    color: #fff;
+}

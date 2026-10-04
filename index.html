@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmable Logistics Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Programmable Logistics Wiki</h1>
+            <nav>
+                <a href="index.html" class="active">Documentation</a>
+                <a href="examples.html">Examples</a>
+                <a href="crafting.html">Crafting Recipes</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>PLang Language Documentation</h1>
+<p>Welcome to <strong>PLang</strong> (Programmable Logistics Language), a simple C-like language designed specifically for scripting automation and logistics networks in Minecraft.</p>
+<h2>Basic Syntax</h2>
+<p>PLang uses a familiar syntax inspired by C, C++, and Java.
+- <strong>Variables</strong>: Statically typed, e.g. <code>int count = 5;</code> or <code>string name = "hello";</code>
+- <strong>Control Flow</strong>: <code>if / else</code>, <code>while</code>, <code>for</code>, <code>break</code>, <code>continue</code>
+- <strong>Comments</strong>: <code>// single line</code> or <code>/* multi-line */</code></p>
+<h3>Example</h3>
+<pre><code class="language-cpp">int main() {
+    int i = 0;
+    while (i &lt; 10) {
+        log::info(&quot;Iteration: {}&quot;, i);
+        i++;
+    }
+    return 0;
+}
+</code></pre>
+<h2>Built-in Types</h2>
+<ul>
+<li><code>int</code> / <code>long</code>: 64-bit integer</li>
+<li><code>bool</code>: Boolean value (<code>true</code> or <code>false</code>)</li>
+<li><code>string</code>: Text strings (concatenated with <code>+</code>)</li>
+<li><code>list&lt;T&gt;</code>: A dynamic list of items (e.g., <code>list&lt;string&gt;</code>)</li>
+<li><code>auto</code>: Type inference based on assigned value</li>
+<li><code>void</code>: Used only as a return type for functions that don't return anything.</li>
+</ul>
+<h2>Headers and Built-ins</h2>
+<p>PLang code operates by including specific headers for the tasks you need.</p>
+<h3><code>#include &lt;pl/log.hpp&gt;</code></h3>
+<p>Provides server console logging.
+- <code>log::info(string message, ...)</code>: Prints an info message to the server log.</p>
+<h3><code>#include &lt;pl/inventory.hpp&gt;</code></h3>
+<p>Provides commands to control inventories in the logistics network.</p>
+<h4><strong>Getting an Inventory</strong></h4>
+<pre><code class="language-cpp">// Finds the inventory attached to the alias &quot;my_chest&quot;
+Inventory chest = inventory(&quot;my_chest&quot;);
+</code></pre>
+<h4><strong>Inventory Methods</strong></h4>
+<ul>
+<li><code>int count(string itemId)</code>: Returns the total amount of a specific item in the inventory.</li>
+<li><code>bool has_space(string itemId, int amount)</code>: Returns true if the inventory has space to receive the given amount of the item.</li>
+<li><code>int slots()</code>: Returns the total number of slots in the inventory.</li>
+<li><code>string slot(int index)</code>: Returns the string ID of the item in the specified slot index (e.g. <code>"minecraft:iron_ore"</code>). Returns an empty string <code>""</code> if the slot is empty or the index is out of bounds.</li>
+</ul>
+<h4><strong>Transferring Items</strong></h4>
+<ul>
+<li><code>int transfer(Inventory source, Inventory target, string itemId, int amount)</code>: Moves up to <code>amount</code> of <code>itemId</code> from the <code>source</code> inventory to the <code>target</code> inventory across the network. Returns the actual amount successfully moved.</li>
+</ul>
+<h3><code>#include &lt;pl/screen.hpp&gt;</code></h3>
+<p>Provides commands to draw to a Programmable Screen block.</p>
+<h4><strong>Getting a Screen</strong></h4>
+<pre><code class="language-cpp">// You must use a Programmable Controller to draw to a Screen!
+// Find the screen attached to the network with the given alias:
+Screen s = screen(&quot;dashboard_screen&quot;);
+</code></pre>
+<h4><strong>Screen Methods</strong></h4>
+<ul>
+<li><code>clear()</code>: Clears the drawing buffer.</li>
+<li><code>flush()</code>: Swaps the drawing buffer and sends the image to the screen. <em>Must be called to see changes!</em></li>
+<li><code>set_background(int color)</code>: Sets the background color using an integer hex code (e.g., <code>0x00FF00</code> for green).</li>
+<li><code>text(int x, int y, string text, int color, int scale)</code>: Draws text at coordinates <code>x,y</code>.</li>
+<li><code>rect(int x, int y, int w, int h, int color)</code>: Draws a filled rectangle.</li>
+<li><code>outline(int x, int y, int w, int h, int color)</code>: Draws a hollow rectangle outline.</li>
+<li><code>line(int x1, int y1, int x2, int y2, int color)</code>: Draws a line between two points.</li>
+<li><code>progress(int x, int y, int w, int h, int current, int max, int color)</code>: Draws a progress bar.</li>
+<li><code>width()</code>: Returns the screen width in pixels (640).</li>
+<li><code>height()</code>: Returns the screen height in pixels (480).</li>
+</ul>
+<h2>Advanced Features</h2>
+<h3>Timing &amp; Yielding</h3>
+<p>PLang executes code per server tick. To prevent the server from lagging, the VM restricts how many instructions can run per tick.
+- <code>sleep(int ticks)</code>: Pauses execution of the script for the specified number of ticks.
+- <code>yield()</code>: Pauses execution until the next tick.</p>
+<h3>Multi-File Workspaces</h3>
+<p>You can write code across multiple files in the WebGUI editor.
+- <strong>Local Files</strong>: Exist only on the block running the code.
+- <strong>Global Files</strong>: Shared across all Programmable Controllers on the server!
+Include them just like C headers:</p>
+<pre><code class="language-cpp">#include &quot;my_local_file.hpp&quot;
+#include &lt;my_global_file.hpp&gt;
+</code></pre>
+<h3>Persistent Global Variables</h3>
+<p>Variables declared outside of functions are persisted. If the chunk unloads and reloads, global variables will retain their previous values!</p>
+<h3><strong>Network Dashboard (<code>#include &lt;pl/dashboard.hpp&gt;</code>)</strong></h3>
+<p>The <code>Dashboard</code> type allows you to run an HTTP server directly from the game to host a live dashboard accessible in a real web browser! 
+You must place a Network Dashboard block and connect it to your network.</p>
+<h4><strong>Getting a Dashboard</strong></h4>
+<pre><code class="language-cpp">// Find the dashboard attached to the network with the given alias:
+Dashboard dash = dashboard(&quot;main_dash&quot;);
+</code></pre>
+<h4><strong>Starting the Server</strong></h4>
+<pre><code class="language-cpp">// Start the web server on a specific port (e.g., http://localhost:8080)
+dash.start_server(8080);
+</code></pre>
+<h4><strong>Setting Widgets</strong></h4>
+<pre><code class="language-cpp">// Display a value on the dashboard grid. The dashboard will automatically update in real-time!
+dash.set_widget(&quot;Iron Stock&quot;, iron_inv.count(&quot;minecraft:iron_ingot&quot;));
+dash.set_widget(&quot;Status&quot;, &quot;Running&quot;);
+</code></pre>
+<hr />
+<h3><strong>New Advanced Features (v1.1.0)</strong></h3>
+<h4><strong>1. Chat Broadcaster (<code>#include &lt;pl/chat.hpp&gt;</code>)</strong></h4>
+<p>Send messages directly to players!</p>
+<pre><code class="language-cpp">auto chat = chat(&quot;my_broadcaster&quot;);
+chat.broadcast(&quot;Warning: The furnace is completely out of coal!&quot;);
+chat.whisper(&quot;Super&quot;, &quot;Hey, your iron is done smelting!&quot;);
+</code></pre>
+<h4><strong>2. Redstone Interface (<code>#include &lt;pl/redstone.hpp&gt;</code>)</strong></h4>
+<p>Read and emit Redstone power (0-15)!</p>
+<pre><code class="language-cpp">auto rs = redstone(&quot;rs_door&quot;);
+if (rs.get_input() &gt; 0) {
+    // A button was pressed next to the interface!
+    rs.set_output(15); // Open the door!
+}
+</code></pre>
+<h4><strong>3. Network Hard Drive / Database (<code>#include &lt;pl/database.hpp&gt;</code>)</strong></h4>
+<p>Store huge amounts of strings permanently across server restarts!</p>
+<pre><code class="language-cpp">auto db = database(&quot;main_drive&quot;);
+db.set_string(&quot;status&quot;, &quot;ACTIVE&quot;);
+string s = db.get_string(&quot;status&quot;);
+</code></pre>
+<h4><strong>4. Energy Interface (<code>#include &lt;pl/energy.hpp&gt;</code>)</strong></h4>
+<p>Connect to modded power cables and batteries.</p>
+<pre><code class="language-cpp">auto eng = energy_interface(&quot;main_battery&quot;);
+auto machine = energy_interface(&quot;furnace&quot;);
+long stored = eng.get_energy_stored();
+long max = eng.get_max_energy_stored();
+
+// Transfer 50,000 FE from the battery to the furnace
+transfer_energy(eng, machine, 50000);
+</code></pre>
+<h4><strong>5. Auto-Crafter (<code>#include &lt;pl/crafter.hpp&gt;</code>)</strong> &amp; <strong>6. Fluid Interface (<code>#include &lt;pl/fluid.hpp&gt;</code>)</strong></h4>
+<p><em>Coming in a future minor patch (WIP!)</em></p>
+<hr />
+<h2>Example: Checking the First Item in a Container</h2>
+<pre><code class="language-cpp">#include &lt;pl/inventory.hpp&gt;
+#include &lt;pl/log.hpp&gt;
+
+int main() {
+    Inventory input = inventory(&quot;input_chest&quot;);
+
+    // Check what is in the very first slot (slot 0)
+    string firstItem = input.slot(0);
+
+    if (firstItem != &quot;&quot;) {
+        log::info(&quot;The first item is: {}&quot;, firstItem);
+    } else {
+        log::info(&quot;The first slot is empty!&quot;);
+    }
+
+    return 0;
+}
+</code></pre>
+    </div>
+</body>
+</html>

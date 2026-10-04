@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crafting - Programmable Logistics</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .recipes-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .recipe-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            width: 350px;
+        }
+        .recipe-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .recipe-icon {
+            width: 24px;
+            height: 24px;
+            image-rendering: pixelated;
+        }
+        .crafting-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            grid-template-rows: repeat(3, 80px);
+            gap: 4px;
+            background: #8b8b8b;
+            padding: 10px;
+            border-radius: 4px;
+            width: max-content;
+            margin: 0 auto;
+        }
+        .slot {
+            background: #c6c6c6;
+            border: 2px solid #fff;
+            border-bottom-color: #555;
+            border-right-color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slot img {
+            width: 64px;
+            height: 64px;
+            image-rendering: pixelated;
+        }
+        .slot.empty {
+            background: #8b8b8b;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Programmable Logistics Wiki</h1>
+            <nav>
+                <a href="index.html">Documentation</a>
+                <a href="examples.html">Examples</a>
+                <a href="crafting.html" class="active">Crafting Recipes</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Crafting Recipes</h1>
+        <p>All survival crafting recipes for Programmable Logistics components.</p>
+        <div class="recipes-container">
+            <div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_auto_crafter.png' class='recipe-icon' alt=''> PL Auto Crafter (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot empty'></div>
+    <div class='slot' title='Crafting Table'><img src='images/minecraft_crafting_table.png' alt='Crafting Table'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Crafting Table'><img src='images/minecraft_crafting_table.png' alt='Crafting Table'></div>
+    <div class='slot' title='PL Network Connector'><img src='images/programmablelogistics_network_connector.png' alt='PL Network Connector'></div>
+    <div class='slot' title='Crafting Table'><img src='images/minecraft_crafting_table.png' alt='Crafting Table'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Crafting Table'><img src='images/minecraft_crafting_table.png' alt='Crafting Table'></div>
+    <div class='slot empty'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_chat_broadcaster.png' class='recipe-icon' alt=''> PL Chat Broadcaster (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot empty'></div>
+    <div class='slot' title='Note Block'><img src='images/minecraft_note_block.png' alt='Note Block'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Note Block'><img src='images/minecraft_note_block.png' alt='Note Block'></div>
+    <div class='slot' title='PL Network Connector'><img src='images/programmablelogistics_network_connector.png' alt='PL Network Connector'></div>
+    <div class='slot' title='Note Block'><img src='images/minecraft_note_block.png' alt='Note Block'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Note Block'><img src='images/minecraft_note_block.png' alt='Note Block'></div>
+    <div class='slot empty'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_energy_interface.png' class='recipe-icon' alt=''> PL Energy Interface (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot empty'></div>
+    <div class='slot' title='Gold Ingot'><img src='images/minecraft_gold_ingot.png' alt='Gold Ingot'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Gold Ingot'><img src='images/minecraft_gold_ingot.png' alt='Gold Ingot'></div>
+    <div class='slot' title='PL Network Connector'><img src='images/programmablelogistics_network_connector.png' alt='PL Network Connector'></div>
+    <div class='slot' title='Gold Ingot'><img src='images/minecraft_gold_ingot.png' alt='Gold Ingot'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Gold Ingot'><img src='images/minecraft_gold_ingot.png' alt='Gold Ingot'></div>
+    <div class='slot empty'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_fluid_interface.png' class='recipe-icon' alt=''> PL Fluid Interface (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot empty'></div>
+    <div class='slot' title='Bucket'><img src='images/minecraft_bucket.png' alt='Bucket'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Bucket'><img src='images/minecraft_bucket.png' alt='Bucket'></div>
+    <div class='slot' title='PL Network Connector'><img src='images/programmablelogistics_network_connector.png' alt='PL Network Connector'></div>
+    <div class='slot' title='Bucket'><img src='images/minecraft_bucket.png' alt='Bucket'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Bucket'><img src='images/minecraft_bucket.png' alt='Bucket'></div>
+    <div class='slot empty'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_inventory_interface.png' class='recipe-icon' alt=''> PL Inventory Interface (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot empty'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot' title='Chest'><img src='images/minecraft_chest.png' alt='Chest'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot empty'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_network_connector.png' class='recipe-icon' alt=''> PL Network Connector (x16)</h3>
+  <div class='crafting-grid'>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot' title='Copper Ingot'><img src='images/minecraft_copper_ingot.png' alt='Copper Ingot'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_network_dashboard.png' class='recipe-icon' alt=''> PL Network Dashboard (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot' title='Comparator'><img src='images/minecraft_comparator.png' alt='Comparator'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Glowstone Dust'><img src='images/minecraft_glowstone_dust.png' alt='Glowstone Dust'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_network_hard_drive.png' class='recipe-icon' alt=''> PL Network Hard Drive (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot empty'></div>
+    <div class='slot' title='Iron Block'><img src='images/minecraft_iron_block.png' alt='Iron Block'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Iron Block'><img src='images/minecraft_iron_block.png' alt='Iron Block'></div>
+    <div class='slot' title='PL Network Connector'><img src='images/programmablelogistics_network_connector.png' alt='PL Network Connector'></div>
+    <div class='slot' title='Iron Block'><img src='images/minecraft_iron_block.png' alt='Iron Block'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Iron Block'><img src='images/minecraft_iron_block.png' alt='Iron Block'></div>
+    <div class='slot empty'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_programmable_controller.png' class='recipe-icon' alt=''> PL Programmable Controller (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot' title='Obsidian'><img src='images/minecraft_obsidian.png' alt='Obsidian'></div>
+    <div class='slot' title='Ender Eye'><img src='images/minecraft_ender_eye.png' alt='Ender Eye'></div>
+    <div class='slot' title='Obsidian'><img src='images/minecraft_obsidian.png' alt='Obsidian'></div>
+    <div class='slot' title='Redstone Block'><img src='images/minecraft_redstone_block.png' alt='Redstone Block'></div>
+    <div class='slot' title='Netherite Ingot'><img src='images/minecraft_netherite_ingot.png' alt='Netherite Ingot'></div>
+    <div class='slot' title='Redstone Block'><img src='images/minecraft_redstone_block.png' alt='Redstone Block'></div>
+    <div class='slot' title='Obsidian'><img src='images/minecraft_obsidian.png' alt='Obsidian'></div>
+    <div class='slot' title='Diamond Block'><img src='images/minecraft_diamond_block.png' alt='Diamond Block'></div>
+    <div class='slot' title='Obsidian'><img src='images/minecraft_obsidian.png' alt='Obsidian'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_programmable_screen.png' class='recipe-icon' alt=''> PL Programmable Screen (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot' title='Glass Pane'><img src='images/minecraft_glass_pane.png' alt='Glass Pane'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+    <div class='slot' title='Diamond'><img src='images/minecraft_diamond.png' alt='Diamond'></div>
+    <div class='slot' title='Iron Ingot'><img src='images/minecraft_iron_ingot.png' alt='Iron Ingot'></div>
+  </div>
+</div>
+<div class='recipe-card'>
+  <h3><img src='images/programmablelogistics_redstone_interface.png' class='recipe-icon' alt=''> PL Redstone Interface (x1)</h3>
+  <div class='crafting-grid'>
+    <div class='slot empty'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot' title='PL Network Connector'><img src='images/programmablelogistics_network_connector.png' alt='PL Network Connector'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot empty'></div>
+    <div class='slot' title='Redstone'><img src='images/minecraft_redstone.png' alt='Redstone'></div>
+    <div class='slot empty'></div>
+  </div>
+</div>
+
+        </div>
+    </div>
+</body>
+</html>

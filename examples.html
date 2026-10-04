@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Programmable Logistics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Programmable Logistics Wiki</h1>
+            <nav>
+                <a href="index.html">Documentation</a>
+                <a href="examples.html" class="active">Examples</a>
+                <a href="crafting.html">Crafting Recipes</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Scripts & Examples</h1>
+        <p>Here are a few powerful scripts you can run on your Programmable Controllers to automate your world.</p>
+        
+        <div class="example-card">
+            <h2>1. The Automated Ore Smelter</h2>
+            <p>This script continually monitors a chest full of raw ores. Whenever it finds Iron or Gold, it pushes them into an array of furnaces, and then extracts the ingots into an output chest.</p>
+            <pre><code>#include &lt;pl/inventory.hpp&gt;
+
+int main() {
+    Inventory input = inventory("raw_ores");
+    Inventory furnaces = inventory("smelters");
+    Inventory output = inventory("ingots");
+
+    while (true) {
+        // Move raw ores to the smelters
+        if (input.count("minecraft:raw_iron") > 0) {
+            transfer(input, furnaces, "minecraft:raw_iron", 16);
+        }
+        if (input.count("minecraft:raw_gold") > 0) {
+            transfer(input, furnaces, "minecraft:raw_gold", 16);
+        }
+
+        // Pull finished ingots out
+        transfer(furnaces, output, "minecraft:iron_ingot", 64);
+        transfer(furnaces, output, "minecraft:gold_ingot", 64);
+
+        sleep(40); // Wait 2 seconds
+    }
+}</code></pre>
+        </div>
+
+        <div class="example-card">
+            <h2>2. The Base Security Lockdown</h2>
+            <p>This script uses the Redstone Interface and Chat Broadcaster to lock the doors and alert the owner if a perimeter breach is detected!</p>
+            <pre><code>#include &lt;pl/redstone.hpp&gt;
+#include &lt;pl/chat.hpp&gt;
+
+int main() {
+    auto sensor = redstone("tripwire_input");
+    auto door_lock = redstone("door_lock");
+    auto comms = chat("base_comms");
+
+    while (true) {
+        if (sensor.get_input() > 0) {
+            door_lock.set_output(15); // Lock the piston doors!
+            comms.whisper("Super", "ALERT! Perimeter breached! Doors locked.");
+            sleep(100); // Keep locked for 5 seconds
+            door_lock.set_output(0);  // Unlock
+        }
+        sleep(5); // Check 4 times a second
+    }
+}</code></pre>
+        </div>
+
+        <div class="example-card">
+            <h2>3. Live Energy Dashboard</h2>
+            <p>This script monitors your main battery using the Energy Interface and hosts a live web dashboard so you can monitor your power from your browser.</p>
+            <pre><code>#include &lt;pl/energy.hpp&gt;
+#include &lt;pl/dashboard.hpp&gt;
+
+int main() {
+    auto battery = energy_interface("main_cell");
+    auto dash = dashboard("energy_dash");
+    
+    dash.start_server(8080);
+
+    while (true) {
+        long stored = battery.get_energy_stored();
+        long max = battery.get_max_energy_stored();
+        
+        long percentage = (stored * 100) / max;
+
+        dash.set_widget("Stored Power (FE)", stored);
+        dash.set_widget("Battery %", percentage);
+        
+        if (percentage < 10) {
+            dash.set_widget("Status", "CRITICAL - LOW POWER");
+        } else {
+            dash.set_widget("Status", "Stable");
+        }
+        
+        sleep(20);
+    }
+}</code></pre>
+        </div>
+
+        <div class="example-card">
+            <h2>4. Network Storage Database</h2>
+            <p>Use the Network Hard Drive to persist complex logic states across server restarts.</p>
+            <pre><code>#include &lt;pl/database.hpp&gt;
+
+int main() {
+    auto db = database("main_drive");
+    
+    // Check if it's the first time running
+    if (db.get_string("initialized") != "true") {
+        db.set_string("initialized", "true");
+        db.set_string("factory_mode", "idle");
+    }
+
+    string mode = db.get_string("factory_mode");
+    // ... use mode logic ...
+}</code></pre>
+        </div>
+
+        <div class="example-card">
+            <h2>5. Redstone Clock Generator</h2>
+            <p>A simple, programmable redstone clock that pulses every 1 second exactly.</p>
+            <pre><code>#include &lt;pl/redstone.hpp&gt;
+
+int main() {
+    auto rs = redstone("clock_out");
+
+    while (true) {
+        rs.set_output(15);
+        sleep(10); // ON for half a second (10 ticks)
+        
+        rs.set_output(0);
+        sleep(10); // OFF for half a second
+    }
+}</code></pre>
+        </div>
+    </div>
+</body>
+</html>
